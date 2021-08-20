@@ -96,8 +96,8 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.3.0</muleVersion>
-						<username>${username}</username>
-						<password>${password}</password>
+						<username>Alem123</username>
+						<password>Alem123@</password>
 						<properties>
 						    <http.port>8081</http.port>
 							<anypoint.platform.base_uri>https://anypoint.mulesoft.com</anypoint.platform.base_uri>
