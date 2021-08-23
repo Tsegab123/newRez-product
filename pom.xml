@@ -17,10 +17,11 @@
 
 		<app.runtime>4.3.0-20210322</app.runtime>
 		<mule.maven.plugin.version>3.5.1</mule.maven.plugin.version>
+		<munit.version>2.3.4</munit.version>
 	</properties>
 	<profiles>
 		<profile>
-		  <id>dev</id>
+			<id>dev</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -45,11 +46,34 @@
 							</cloudHubDeployment>
 						</configuration>
 					</plugin>
+					<plugin>
+						<groupId>com.mulesoft.munit.tools</groupId>
+						<artifactId>munit-maven-plugin</artifactId>
+						<version>${munit.version}</version>
+						<executions>
+							<execution>
+								<id>test</id>
+								<phase>test</phase>
+								<goals>
+									<goal>test</goal>
+									<goal>coverage-report</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<coverage>
+								<runCoverage>true</runCoverage>
+								<formats>
+									<format>html</format>
+								</formats>
+							</coverage>
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
 		<profile>
-		   <id>test</id>
+			<id>test</id>
 			<build>
 				<plugins>
 					<plugin>
@@ -74,6 +98,20 @@
 							</cloudHubDeployment>
 						</configuration>
 					</plugin>
+					<plugin>
+						<groupId>com.mulesoft.munit.tools</groupId>
+						<artifactId>munit-maven-plugin</artifactId>
+						<version>${munit.version}</version>
+						<executions>
+							<execution>
+								<id>test</id>
+								<phase>test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 
@@ -96,10 +134,10 @@
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.3.0</muleVersion>
-						<username>Alem123</username>
-						<password>Alem123@</password>
+						<username>${username}</username>
+						<password>${password}</password>
 						<properties>
-						    <http.port>8081</http.port>
+							<http.port>8081</http.port>
 							<anypoint.platform.base_uri>https://anypoint.mulesoft.com</anypoint.platform.base_uri>
 							<anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com</anypoint.platform.analytics_base_uri>
 						</properties>
@@ -135,6 +173,26 @@
 			<artifactId>mule-apikit-module</artifactId>
 			<version>1.5.1</version>
 			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-runner</artifactId>
+			<version>2.3.4</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.munit</groupId>
+			<artifactId>munit-tools</artifactId>
+			<version>2.3.4</version>
+			<classifier>mule-plugin</classifier>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.weave</groupId>
+			<artifactId>assertions</artifactId>
+			<version>1.0.2</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
